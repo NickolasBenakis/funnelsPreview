@@ -1,6 +1,8 @@
-<a href="https://www.perspective.co/">
-<img src="https://perspective.imgix.net/assets/app/logo/256x256.png" alt="thumbnail">
+<p align="center">
+  <a href="https://www.perspective.co/">
+  <img align="center" src="https://perspective.imgix.net/assets/app/logo/256x256.png" alt="thumbnail">
 </a>
+</p>
 <p align="center">
   <a href="#-features"><strong>Features</strong></a> ·
   <a href="#-deployment"><strong>Deployment</strong></a> ·
