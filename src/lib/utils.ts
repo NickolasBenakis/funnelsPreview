@@ -19,15 +19,6 @@ export const getValidColor = (color: string | undefined, fallback = "") => {
   return isValidColor(color) ? color : fallback;
 };
 
-export const getReadableColor = (
-  color: string | undefined,
-  darkMode = false,
-) => {
-  if (!isValidColor(color)) return darkMode ? "#FFF" : "#000";
-  const c = Color(color);
-  return c.isDark() ? "#FFF" : "#000";
-};
-
 export const waitFor = (ms: number) => new Promise((r) => setTimeout(r, ms));
 
 export const isJson = (file: File) => file.type === "application/json";

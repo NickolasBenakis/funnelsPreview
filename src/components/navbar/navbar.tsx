@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-// import { ThemeSwitcher } from "../theme-switcher";
+import { ThemeSwitcher } from "../theme-switcher";
 
 export const Navbar = async () => {
   return (
@@ -19,7 +19,6 @@ export const Navbar = async () => {
           />
           <h6 className="self-center">Funnels Preview</h6>
         </Link>
-        {/* <ThemeSwitcher className="flex items-center gap-2" /> */}
       </div>
     </nav>
   );

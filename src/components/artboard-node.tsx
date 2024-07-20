@@ -1,5 +1,4 @@
-import useIsDarkMode from "@/hooks/use-is-dark-mode";
-import { cn, getReadableColor, getValidColor } from "@/lib/utils";
+import { cn } from "@/lib/utils";
 import type { Block } from "@/types/types";
 import React from "react";
 
@@ -7,10 +6,8 @@ export type ArtboardNodeProps = {
   block: Block;
 };
 const ArtboardNode = ({ block }: ArtboardNodeProps) => {
-  const isDarkMode = useIsDarkMode();
-  console.log(isDarkMode);
   switch (block.type) {
-    case "text":
+    case "text": {
       return (
         <p
           id={block.id}
@@ -19,12 +16,13 @@ const ArtboardNode = ({ block }: ArtboardNodeProps) => {
             `p-2 text-base ${block.align && `text-${block.align}`} `,
           )}
           style={{
-            color: getValidColor(block.color) || "inherit",
+            color: block.color || "inherit",
           }}
         >
           {block.text}
         </p>
       );
+    }
     case "image":
       return (
         <img
@@ -35,7 +33,7 @@ const ArtboardNode = ({ block }: ArtboardNodeProps) => {
           className="px-2 w-full"
         />
       );
-    case "list":
+    case "list": {
       return (
         <ul id={block.id} data-type={block.type} className="py-2">
           {block?.items?.map((item) => (
@@ -47,7 +45,8 @@ const ArtboardNode = ({ block }: ArtboardNodeProps) => {
           ))}
         </ul>
       );
-    case "button":
+    }
+    case "button": {
       return (
         <button
           type="button"
@@ -55,13 +54,14 @@ const ArtboardNode = ({ block }: ArtboardNodeProps) => {
           data-type={block.type}
           className="p-2 my-4 mx-auto rounded-lg w-1/2 flex justify-center items-center"
           style={{
-            backgroundColor: getValidColor(block.bgColor) || "inherit",
-            color: getValidColor(block.color) || "inherit",
+            backgroundColor: block.bgColor || "inherit",
+            color: block.color || "inherit",
           }}
         >
           {block.text}
         </button>
       );
+    }
     default:
       return null;
   }

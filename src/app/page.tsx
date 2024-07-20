@@ -10,21 +10,21 @@ import {
   SkeletonArtboard,
   SkeletonButton,
 } from "@/components/ui/skeleton";
+import validJsonInputExample from "@/json/input1.json";
 import { localStorage } from "@/lib/storage";
 import { cn, isJson, waitFor } from "@/lib/utils";
 import type { FunnelJSON } from "@/types/types";
 import type React from "react";
 import { useEffect, useState } from "react";
-
-import {
-  JsonView,
-  allExpanded,
-  darkStyles,
-  defaultStyles,
-} from "react-json-view-lite";
+import { JsonView, allExpanded, defaultStyles } from "react-json-view-lite";
 import "react-json-view-lite/dist/index.css";
 
-const STORAGE_KEY = "funnelJson";
+export const STORAGE_KEY = "funnelJson";
+export enum ErrorType {
+  InvalidJsonSchema = "INVALID_JSON_SCHEMA",
+  InvalidFileType = "INVALID_FILE_TYPE",
+  NoFileDetected = "NO_FILE_DETECTED",
+}
 
 const Home = () => {
   const [file, setFile] = useState<File | undefined>(undefined);
@@ -33,54 +33,69 @@ const Home = () => {
   );
 
   const [currentPage, setCurrentPage] = useState<number>(1);
-
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState<string>("");
+  const [error, setError] = useState<ErrorType | undefined>(undefined);
+
+  console.log("funnelJson", funnelJson);
+  console.log("file", file);
+  console.log("error", error);
+  console.log("isLoading", isLoading);
 
   const onFileChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
     setIsLoading(true);
+    setError(undefined);
+
     await waitFor(500);
 
     const files = event.target.files;
     if (!files || files.length === 0) {
       setIsLoading(false);
-      setError("No file selected");
+      setError(ErrorType.NoFileDetected);
       return;
     }
 
     const file = files[0];
     if (!isJson(file)) {
       setIsLoading(false);
-      setError("Invalid file type");
+      setError(ErrorType.InvalidFileType);
       return;
     }
 
     const reader = new FileReader();
+    reader.readAsText(file);
     reader.onload = async (e) => {
       if (!e.target) return;
       try {
+        console.log("raw", e.target.result);
         const funnelJson = JSON.parse(e.target.result?.toString() || "");
+        if (!funnelJson) {
+          setError(ErrorType.InvalidJsonSchema);
+          setFile(undefined);
+          return;
+        }
+
         setFunnelJson(funnelJson);
         await localStorage.setItem(STORAGE_KEY, funnelJson);
-      } catch (error) {
-        setError("Invalid JSON file");
+      } catch (_error) {
+        setError(ErrorType.InvalidJsonSchema);
+        setFile(undefined);
       } finally {
         setIsLoading(false);
       }
     };
-    reader.readAsText(files[0]);
     setFile(files[0]);
   };
 
-  const onRemove = async () => {
+  const onRemoveEverything = async () => {
     onFileReset();
+    setIsLoading(false);
     setFunnelJson(undefined);
-    await localStorage.removeItem("funnelJson");
+    localStorage.removeItemSync(STORAGE_KEY);
   };
 
   const onFileReset = () => {
     setFile(undefined);
-    setError("");
+    setError(undefined);
   };
 
   useEffect(() => {
@@ -90,8 +105,6 @@ const Home = () => {
     }
   }, []);
 
-  const funnelJsonPages = funnelJson?.pages || [];
-
   return (
     <section className="fixed h-full w-screen overflow-auto">
       <div
@@ -99,22 +112,24 @@ const Home = () => {
         id="artboard-view"
       >
         {isLoading && <SkeletonArtboard />}
-        {!isLoading && funnelJsonPages.length === 0 && (
-          <div className="p-4">
+        {!isLoading && error === ErrorType.InvalidJsonSchema && (
+          <div className="p-4 rounded-md">
             <Info
-              heading="No pages found"
-              subheading="Try to upload another json"
+              heading="Invalid json schema"
+              subheading="Try to upload another json, similar to the json below 👇"
             />
             <JsonView
-              data={funnelJsonPages}
+              data={validJsonInputExample}
               shouldExpandNode={allExpanded}
               style={defaultStyles}
             />
           </div>
         )}
+
         {!isLoading &&
-          funnelJsonPages.length > 0 &&
-          funnelJsonPages.map?.((page, index) => (
+          Array.isArray(funnelJson?.pages) &&
+          funnelJson?.pages?.length > 0 &&
+          funnelJson?.pages.map?.((page, index) => (
             <MobileArtboard
               key={page.id}
               id={`${index + 1}`}
@@ -168,7 +183,7 @@ const Home = () => {
               <Button
                 variant="destructive"
                 className="w-full"
-                onClick={onRemove}
+                onClick={onRemoveEverything}
               >
                 Remove
               </Button>

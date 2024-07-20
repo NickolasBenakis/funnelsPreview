@@ -1,5 +1,6 @@
 "use-client";
 
+import type { ErrorType } from "@/app/page";
 import { Button } from "@/components/ui/button";
 import { Spinner } from "@/components/ui/spinner";
 import { cn } from "@/lib/utils";
@@ -8,7 +9,7 @@ import React, { useRef, type ChangeEvent } from "react";
 
 export interface DropZoneProps {
   file: File | undefined;
-  error: string;
+  error: ErrorType | undefined;
   isLoading: boolean;
   onFileChange: (file: ChangeEvent<HTMLInputElement>) => void;
   onFileReset?: () => void;
@@ -23,6 +24,15 @@ const DropZone: React.FC<DropZoneProps> = ({
 }) => {
   const inputRef = useRef<HTMLInputElement>(null);
 
+  const onInternalFileReset = () => {
+    if (inputRef.current) {
+      inputRef.current.value = "";
+    }
+
+    if (onFileReset) {
+      onFileReset();
+    }
+  };
   return (
     <div
       className={`
@@ -98,7 +108,7 @@ const DropZone: React.FC<DropZoneProps> = ({
             <p className="font-semibold text-sm text-gray-500 dark:text-gray-400">
               Error uploading file. Please try again.
             </p>
-            <Button onClick={onFileReset} variant="default" size="sm">
+            <Button onClick={onInternalFileReset} variant="default" size="sm">
               Try again
             </Button>
           </div>

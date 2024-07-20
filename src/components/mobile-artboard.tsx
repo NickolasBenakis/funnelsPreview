@@ -1,5 +1,4 @@
-import useIsDarkMode from "@/hooks/use-is-dark-mode";
-import { getReadableColor, getValidColor } from "@/lib/utils";
+import { getValidColor } from "@/lib/utils";
 import type React from "react";
 import { isMobile } from "react-device-detect";
 import { AnimatedComponent } from "./animated-component";
@@ -17,8 +16,6 @@ const MobileArtboard = ({
   name,
   id,
 }: MobileArtboardProps) => {
-  const isDarkMode = useIsDarkMode();
-
   return (
     <AnimatedComponent
       id={`artboard-${id}`}
