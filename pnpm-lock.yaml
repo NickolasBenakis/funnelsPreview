@@ -32,6 +32,9 @@ importers:
       '@types/color':
         specifier: 3.0.6
         version: 3.0.6
+      '@types/lodash':
+        specifier: ^4.17.7
+        version: 4.17.7
       class-variance-authority:
         specifier: 0.7.0
         version: 0.7.0
@@ -44,6 +47,9 @@ importers:
       framer-motion:
         specifier: 11.3.8
         version: 11.3.8(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      lodash:
+        specifier: ^4.17.21
+        version: 4.17.21
       lucide-react:
         specifier: 0.407.0
         version: 0.407.0(react@18.3.1)
@@ -1012,6 +1018,9 @@ packages:
 
   '@types/jsdom@20.0.1':
     resolution: {integrity: sha512-d0r18sZPmMQr1eG35u12FZfhIXNrnsPU/g5wvRKCUf/tOGilKKwYMYGqh33BNR6ba+2gkHw1EUiHoN3mn7E5IQ==}
+
+  '@types/lodash@4.17.7':
+    resolution: {integrity: sha512-8wTvZawATi/lsmNu10/j2hk1KEP0IvjubqPE3cu1Xz7xfXXt5oCq3SNUz4fMIP4XGF9Ky+Ue2tBA3hcS7LSBlA==}
 
   '@types/node@20.14.11':
     resolution: {integrity: sha512-kprQpL8MMeszbz6ojB5/tU8PLN4kesnN8Gjzw349rDlNgsSzg90lAVj3llK99Dh7JON+t9AuscPPFW6mPbTnSA==}
@@ -3916,6 +3925,8 @@ snapshots:
       '@types/node': 20.14.11
       '@types/tough-cookie': 4.0.5
       parse5: 7.1.2
+
+  '@types/lodash@4.17.7': {}
 
   '@types/node@20.14.11':
     dependencies:

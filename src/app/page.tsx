@@ -10,100 +10,28 @@ import {
   SkeletonArtboard,
   SkeletonButton,
 } from "@/components/ui/skeleton";
-import validJsonInputExample from "@/json/input1.json";
-import { localStorage } from "@/lib/storage";
-import { cn, isJson, waitFor } from "@/lib/utils";
-import type { FunnelJSON } from "@/types/types";
+import { ErrorType, useFile } from "@/hooks/use-file";
+import validJsonInputExample from "@/json/example.json";
+import { cn } from "@/lib/utils";
 import type React from "react";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { JsonView, allExpanded, defaultStyles } from "react-json-view-lite";
 import "react-json-view-lite/dist/index.css";
 
-export const STORAGE_KEY = "funnelJson";
-export enum ErrorType {
-  InvalidJsonSchema = "INVALID_JSON_SCHEMA",
-  InvalidFileType = "INVALID_FILE_TYPE",
-  NoFileDetected = "NO_FILE_DETECTED",
-}
-
 const Home = () => {
-  const [file, setFile] = useState<File | undefined>(undefined);
-  const [funnelJson, setFunnelJson] = useState<FunnelJSON | undefined>(
-    undefined,
-  );
-
   const [currentPage, setCurrentPage] = useState<number>(1);
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState<ErrorType | undefined>(undefined);
 
-  console.log("funnelJson", funnelJson);
-  console.log("file", file);
-  console.log("error", error);
-  console.log("isLoading", isLoading);
+  const {
+    funnelJson,
+    isLoading,
+    error,
 
-  const onFileChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
-    setIsLoading(true);
-    setError(undefined);
-
-    await waitFor(500);
-
-    const files = event.target.files;
-    if (!files || files.length === 0) {
-      setIsLoading(false);
-      setError(ErrorType.NoFileDetected);
-      return;
-    }
-
-    const file = files[0];
-    if (!isJson(file)) {
-      setIsLoading(false);
-      setError(ErrorType.InvalidFileType);
-      return;
-    }
-
-    const reader = new FileReader();
-    reader.readAsText(file);
-    reader.onload = async (e) => {
-      if (!e.target) return;
-      try {
-        console.log("raw", e.target.result);
-        const funnelJson = JSON.parse(e.target.result?.toString() || "");
-        if (!funnelJson) {
-          setError(ErrorType.InvalidJsonSchema);
-          setFile(undefined);
-          return;
-        }
-
-        setFunnelJson(funnelJson);
-        await localStorage.setItem(STORAGE_KEY, funnelJson);
-      } catch (_error) {
-        setError(ErrorType.InvalidJsonSchema);
-        setFile(undefined);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-    setFile(files[0]);
-  };
-
-  const onRemoveEverything = async () => {
-    onFileReset();
-    setIsLoading(false);
-    setFunnelJson(undefined);
-    localStorage.removeItemSync(STORAGE_KEY);
-  };
-
-  const onFileReset = () => {
-    setFile(undefined);
-    setError(undefined);
-  };
-
-  useEffect(() => {
-    if (typeof window !== "undefined" && !funnelJson) {
-      const funnelJson = localStorage.getItemSync<FunnelJSON>(STORAGE_KEY);
-      setFunnelJson(funnelJson);
-    }
-  }, []);
+    onFileChange,
+    onFileReset,
+    onFileDrop,
+    onFileDragOver,
+    onClearState,
+  } = useFile();
 
   return (
     <section className="fixed h-full w-screen overflow-auto">
@@ -142,6 +70,7 @@ const Home = () => {
             </MobileArtboard>
           ))}
       </div>
+
       <aside
         id="sidebar"
         className="fixed left-0 top-16 h-[calc(100%-64px)] w-80 py-2 overflow-y-auto overflow-x-hidden border-r"
@@ -149,11 +78,12 @@ const Home = () => {
         <div className="pt-2 px-4">
           <h2 className="text-2xl font-bold mb-4">Upload</h2>
           <DropZone
-            file={file}
             error={error}
             isLoading={isLoading}
             onFileChange={onFileChange}
             onFileReset={onFileReset}
+            onFileDrop={onFileDrop}
+            onFileDragOver={onFileDragOver}
           />
         </div>
 
@@ -180,10 +110,12 @@ const Home = () => {
           <>
             <div className="p-4">
               <h2 className="text-2xl font-bold my-4">Manage</h2>
+              <h2 className="text-md my-4">{funnelJson.name}</h2>
+
               <Button
                 variant="destructive"
                 className="w-full"
-                onClick={onRemoveEverything}
+                onClick={onClearState}
               >
                 Remove
               </Button>

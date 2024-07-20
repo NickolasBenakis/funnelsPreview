@@ -1,7 +1,7 @@
 import { cn } from "@/lib/utils";
 import type { Block } from "@/types/types";
 import React from "react";
-import ImageNode from "./imageNode";
+import ImageNode from "./image-node";
 
 export type ArtboardNodeProps = {
   block: Block;

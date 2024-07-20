@@ -26,8 +26,8 @@ const pageSchema = z.object({
   blocks: z.array(blockSchema),
 });
 
-export const funnelSchema = z.object({
+export const jsonSchemaValidation = z.object({
   name: z.string(),
   bgColor: z.string(),
-  pages: z.array(pageSchema),
+  pages: z.array(pageSchema).min(1),
 });

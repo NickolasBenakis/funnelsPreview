@@ -1,6 +1,5 @@
 import { ImageOff } from "lucide-react";
-import React from "react";
-import { Skeleton } from "./ui/skeleton";
+import React, { useState } from "react";
 
 export type ImageNodeProps = {
   id: string;
@@ -8,7 +7,7 @@ export type ImageNodeProps = {
   alt?: string;
 };
 const ImageNode = ({ id, src, alt }: ImageNodeProps) => {
-  const [error, setError] = React.useState(false);
+  const [error, setError] = useState(false);
 
   if (error) {
     return (
@@ -18,6 +17,7 @@ const ImageNode = ({ id, src, alt }: ImageNodeProps) => {
       </div>
     );
   }
+
   return (
     <img
       id={id}

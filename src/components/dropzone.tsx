@@ -1,26 +1,28 @@
 "use-client";
 
-import type { ErrorType } from "@/app/page";
 import { Button } from "@/components/ui/button";
 import { Spinner } from "@/components/ui/spinner";
+import type { ErrorType } from "@/hooks/use-file";
 import { cn } from "@/lib/utils";
 import { Frown, Upload } from "lucide-react";
 import React, { useRef, type ChangeEvent } from "react";
 
 export interface DropZoneProps {
-  file: File | undefined;
   error: ErrorType | undefined;
   isLoading: boolean;
   onFileChange: (file: ChangeEvent<HTMLInputElement>) => void;
   onFileReset?: () => void;
+  onFileDrop?: (e: React.DragEvent<HTMLLabelElement>) => void;
+  onFileDragOver?: (e: React.DragEvent<HTMLLabelElement>) => void;
 }
 
 const DropZone: React.FC<DropZoneProps> = ({
-  file,
   error,
   isLoading,
   onFileChange,
   onFileReset,
+  onFileDrop,
+  onFileDragOver,
 }) => {
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -33,6 +35,7 @@ const DropZone: React.FC<DropZoneProps> = ({
       onFileReset();
     }
   };
+
   return (
     <div
       className={`
@@ -52,10 +55,18 @@ const DropZone: React.FC<DropZoneProps> = ({
     >
       {!error && (
         <label
+          onDrop={onFileDrop}
+          onDragOver={onFileDragOver}
+          onDragEnter={(e) =>
+            e.currentTarget.classList.replace("bg-gray-50", "bg-gray-100")
+          }
+          onDragLeave={(e) =>
+            e.currentTarget.classList.replace("bg-gray-100", "bg-gray-50")
+          }
           htmlFor="dropzone-file"
           aria-disabled={isLoading}
           className={cn(
-            "flex flex-col w-full justify-center h-40 items-center border-gray-300 bg-gray-50 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600",
+            "flex flex-col w-full justify-center h-40 items-center border-gray-300 bg-gray-50 dark:bg-gray-700 hover:bg-gray-100",
             isLoading
               ? "pointer-events-none cursor-default"
               : "pointer-events-auto cursor-pointer",
@@ -64,7 +75,7 @@ const DropZone: React.FC<DropZoneProps> = ({
           {isLoading && (
             <React.Fragment>
               <div className="flex flex-col gap-3 items-center justify-start pt-5 pb-6">
-                <Spinner className="w-8 h-8" />
+                <Spinner size="medium" className="w-8 h-8" />
                 <p className="font-semibold text-sm text-gray-500 dark:text-gray-400">
                   Uploading file...
                 </p>
