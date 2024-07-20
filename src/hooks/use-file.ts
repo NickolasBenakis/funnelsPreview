@@ -34,7 +34,7 @@ export default () => {
     reader.onload = async (e) => {
       if (!e.target) return;
       try {
-        const funnelJson = JSON.parse(e.target.result?.toString() || "");
+        const funnelJson = JSON.parse(e.target.result?.toString?.() || "");
         if (
           !funnelJson ||
           isEmpty(funnelJson.pages) ||
