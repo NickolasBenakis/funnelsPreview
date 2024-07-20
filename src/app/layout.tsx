@@ -2,19 +2,17 @@ import "@/styles/globals.css";
 
 import { Navbar } from "@/components/navbar/navbar";
 import { ThemeProvider } from "@/components/theme-provider";
-import { siteConfig } from "@/lib/constant";
 import { fonts } from "@/lib/fonts";
 import { cn } from "@/lib/utils";
 import type { Metadata } from "next";
 import type { PropsWithChildren } from "react";
 
 export const generateMetadata = (): Metadata => ({
-  metadataBase: new URL(siteConfig.url || ""),
   title: {
-    default: siteConfig.title,
-    template: siteConfig.title,
+    default: "Funnels Preview",
+    template: "Funnels Preview",
   },
-  description: siteConfig.description,
+  description: "Funnels Preview",
   icons: {
     icon: "/favicon/favicon.ico",
     shortcut: "/favicon/favicon-16x16.png",
