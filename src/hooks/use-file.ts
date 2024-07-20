@@ -70,7 +70,8 @@ export default () => {
     if (event?.dataTransfer?.items) {
       Array.from(event.dataTransfer.items).forEach((item) => {
         if (item.kind === "file") {
-          files.push((item as any).getAsFile());
+          const file = item.getAsFile() as File;
+          files.push(file);
         }
       });
     } else {

@@ -54,7 +54,6 @@ const Home = () => {
             </div>
           )}
 
-          {`funnelJSON${JSON.stringify(funnelJson, null, 2)}`}
           {!isLoading &&
             Array.isArray(funnelJson?.pages) &&
             funnelJson?.pages?.length > 0 &&
