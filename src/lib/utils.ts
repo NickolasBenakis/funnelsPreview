@@ -10,7 +10,7 @@ export const isValidColor = (color: string | undefined) => {
   try {
     Color(color);
     return true;
-  } catch (e: unknown) {
+  } catch (_e: unknown) {
     return false;
   }
 };

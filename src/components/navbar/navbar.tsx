@@ -1,6 +1,5 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ThemeSwitcher } from "../theme-switcher";
 
 export const Navbar = async () => {
   return (

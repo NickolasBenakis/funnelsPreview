@@ -1,6 +1,5 @@
 import { localStorage } from "@/lib/storage";
-import { isJson } from "@/lib/utils";
-import { waitFor } from "@/lib/utils";
+import { isJson, waitFor } from "@/lib/utils";
 import type { FunnelJSON } from "@/types/types";
 import { isEmpty } from "lodash";
 import { useEffect, useState } from "react";

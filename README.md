@@ -24,25 +24,21 @@
 
 ## 🚀 Deployment
 
-...(coming soon)
-
+[website](https://funnels-preview-ashen.vercel.app/)
 
 ## 🎯 Getting started
 
 ### 2. Install dependencies
 
 ```bash
-npm install
+pnpm install
 ```
-
-### 3. Set up environment variables
-Create `.env` file and set env variables from `.env.example` file.
 
 ### 4. Prepare husky
 It is required if you want husky to work
 
 ```bash
-npm run prepare
+pnpm prepare
 ```
 
 ### 5. Run the dev server
@@ -59,19 +55,16 @@ and open http://localhost:3000/ to see this app.
 
 ```bash
 .
-├── .github                         # GitHub folder
 ├── .husky                          # Husky configuration
 ├── public                          # Public assets folder
 └── src
     ├── __tests__                   # Unit and tests
-    ├── actions                     # Server actions
     ├── app                         # Next JS App (App Router)
     ├── components                  # React components
     ├── hooks                       # Custom hooks
     ├── lib                         # Functions and utilities
     ├── styles                      # Styles folder
     ├── types                       # Type definitions
-    └── env.mjs                     # Env variables config file
 ```
 
 ## ⚙️ Scripts overview
@@ -80,7 +73,7 @@ The following scripts are available in the `package.json`:
 - `build`: Build the app
 - `start`: Run production server
 - `preview`: Run `build` and `start` commands together
-- `lint`: Lint the code using Eslint
+- `lint`: Lint the code using Biome
 - `lint:fix`: Fix linting errors
 - `format:check`: Checks the code for proper formatting
 - `format:write`: Fix formatting issues
@@ -89,3 +82,8 @@ The following scripts are available in the `package.json`:
 - `test:watch`: Run unit tests in watch mode
 - `postbuild`: Generate sitemap
 - `prepare`: Install Husky for managing Git hooks
+
+## Extra Mile 🏁 
+
+- More Unit tests and UI Integration tests (Page)
+- 

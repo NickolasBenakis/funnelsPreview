@@ -37,7 +37,7 @@ class BrowserStorage {
     }
   }
 
-  setItem(key: string, value: any): Promise<boolean> {
+  setItem(key: string, value: unknown): Promise<boolean> {
     return new Promise((resolve) => {
       try {
         this.storage.setItem(key, JSON.stringify(value));
@@ -50,7 +50,7 @@ class BrowserStorage {
     });
   }
 
-  setItemSync(key: string, value: any): boolean {
+  setItemSync(key: string, value: unknown): boolean {
     try {
       this.storage.setItem(key, JSON.stringify(value));
       return true;
