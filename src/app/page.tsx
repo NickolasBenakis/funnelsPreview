@@ -1,7 +1,6 @@
 "use client";
 import ArtboardNode from "@/components/artboard-node";
-import DropZone from "@/components/dropzone";
-import Info from "@/components/info";
+import Dropzone from "@/components/dropzone";
 import InvalidState from "@/components/invalid-state";
 import MobileArtboard from "@/components/mobile-artboard";
 import { Button } from "@/components/ui/button";
@@ -21,9 +20,9 @@ import {
   SkeletonArtboard,
   SkeletonButton,
 } from "@/components/ui/skeleton";
-import { ErrorType, useFile } from "@/hooks/use-file";
+import useFile, { ErrorType } from "@/hooks/use-file";
 import { cn, scrollToTop } from "@/lib/utils";
-import { Plus, Upload } from "lucide-react";
+import { Plus } from "lucide-react";
 
 import type React from "react";
 import { useRef, useState } from "react";
@@ -46,11 +45,8 @@ const Home = () => {
 
   return (
     <section className="fixed h-full w-screen overflow-auto">
-      <div
-        className="fixed h-full w-screen overflow-y-auto pb-16 sm:pl-[320px] transition-all duration-200 ease-in-out shadow-lg"
-        id="artboard-view"
-      >
-        <div className="p-4" id="canvas" ref={canvasRef}>
+      <div className="fixed h-full w-screen overflow-y-auto pb-16 sm:pl-[320px] transition-all duration-200 ease-in-out shadow-lg">
+        <div className="p-4" id="canvas" data-testid="canvas" ref={canvasRef}>
           {isLoading && <SkeletonArtboard />}
           {!isLoading && error === ErrorType.InvalidJsonSchema && (
             <div className="p-4 rounded-md">
@@ -58,6 +54,7 @@ const Home = () => {
             </div>
           )}
 
+          {`funnelJSON${JSON.stringify(funnelJson, null, 2)}`}
           {!isLoading &&
             Array.isArray(funnelJson?.pages) &&
             funnelJson?.pages?.length > 0 &&
@@ -83,7 +80,7 @@ const Home = () => {
       >
         <div className="pt-2 px-4">
           <h2 className="text-2xl font-bold mb-4">Upload</h2>
-          <DropZone
+          <Dropzone
             error={error}
             isLoading={isLoading}
             onFileChange={onFileChange}
@@ -94,7 +91,7 @@ const Home = () => {
         </div>
 
         {isLoading && (
-          <div className="p-4">
+          <div className="p-4" data-testid="sidebar-skeleton">
             <Skeleton className="w-32 h-8 my-4" />
             <SkeletonButton className="w-full" />
             <Skeleton className="w-32 h-8 my-4" />
@@ -164,7 +161,7 @@ const Home = () => {
           <DrawerHeader>
             <DrawerDescription>
               <div className="pt-1 px-2">
-                <DropZone
+                <Dropzone
                   error={error}
                   isLoading={isLoading}
                   onFileChange={onFileChange}

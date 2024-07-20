@@ -7,16 +7,16 @@ import { cn } from "@/lib/utils";
 import { Frown, Upload } from "lucide-react";
 import React, { useRef, type ChangeEvent } from "react";
 
-export interface DropZoneProps {
+export type DropzoneProps = {
   error: ErrorType | undefined;
   isLoading: boolean;
   onFileChange: (file: ChangeEvent<HTMLInputElement>) => void;
   onFileReset?: () => void;
   onFileDrop?: (e: React.DragEvent<HTMLLabelElement>) => void;
   onFileDragOver?: (e: React.DragEvent<HTMLLabelElement>) => void;
-}
+};
 
-const DropZone: React.FC<DropZoneProps> = ({
+const Dropzone: React.FC<DropzoneProps> = ({
   error,
   isLoading,
   onFileChange,
@@ -38,6 +38,8 @@ const DropZone: React.FC<DropZoneProps> = ({
 
   return (
     <div
+      id="dropzone-container"
+      data-testid="dropzone-container"
       className={`
         overflow-y-auto 
         flex 
@@ -102,6 +104,7 @@ const DropZone: React.FC<DropZoneProps> = ({
 
           <input
             id="dropzone-file"
+            data-testid="dropzone-file"
             type="file"
             className="hidden"
             multiple={false}
@@ -119,7 +122,12 @@ const DropZone: React.FC<DropZoneProps> = ({
             <p className="font-semibold text-sm text-gray-500 dark:text-gray-400">
               Error uploading file. Please try again.
             </p>
-            <Button onClick={onInternalFileReset} variant="default" size="sm">
+            <Button
+              onClick={onInternalFileReset}
+              variant="default"
+              size="sm"
+              data-test-id="try-again"
+            >
               Try again
             </Button>
           </div>
@@ -129,4 +137,4 @@ const DropZone: React.FC<DropZoneProps> = ({
   );
 };
 
-export default DropZone;
+export default Dropzone;

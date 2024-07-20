@@ -22,6 +22,7 @@ const MobileArtboard = ({
   return (
     <AnimatedComponent
       id={`artboard-${id}`}
+      data-testid={`artboard-${id}`}
       data-name={name}
       style={{
         backgroundColor: getValidColor(bgColor) || "inherit",

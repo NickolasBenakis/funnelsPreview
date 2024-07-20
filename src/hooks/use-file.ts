@@ -12,7 +12,7 @@ export enum ErrorType {
   NoFileDetected = "NO_FILE_DETECTED",
 }
 
-export const useFile = () => {
+export default () => {
   const [funnelJson, setFunnelJson] = useState<FunnelJSON | undefined>(
     undefined,
   );
