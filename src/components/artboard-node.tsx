@@ -1,6 +1,7 @@
 import { cn } from "@/lib/utils";
 import type { Block } from "@/types/types";
 import React from "react";
+import ImageNode from "./imageNode";
 
 export type ArtboardNodeProps = {
   block: Block;
@@ -24,15 +25,7 @@ const ArtboardNode = ({ block }: ArtboardNodeProps) => {
       );
     }
     case "image":
-      return (
-        <img
-          id={block.id}
-          data-type={block.type}
-          src={block.src}
-          alt={block.alt || ""}
-          className="px-2 w-full"
-        />
-      );
+      return <ImageNode id={block.id} src={block.src} alt={block.alt} />;
     case "list": {
       return (
         <ul id={block.id} data-type={block.type} className="py-2">
