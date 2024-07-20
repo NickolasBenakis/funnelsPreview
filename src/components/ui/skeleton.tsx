@@ -1,9 +1,9 @@
 import { cn } from "@/lib/utils";
 import {
   AnimatedComponent,
-  AnimatedComponentProps,
+  type AnimatedComponentProps,
 } from "../animated-component";
-import { Button, ButtonProps } from "./button";
+import { Button, type ButtonProps } from "./button";
 
 function Skeleton({
   className,

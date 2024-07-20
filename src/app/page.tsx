@@ -12,8 +12,9 @@ import {
 } from "@/components/ui/skeleton";
 import { localStorage } from "@/lib/storage";
 import { cn, isJson, waitFor } from "@/lib/utils";
-import { FunnelJSON } from "@/types/types";
-import React, { useEffect, useState } from "react";
+import type { FunnelJSON } from "@/types/types";
+import type React from "react";
+import { useEffect, useState } from "react";
 
 import {
   JsonView,

@@ -54,12 +54,12 @@
         "useSelfClosingElements": "off"
       },
       "a11y": {
-        "useValidAnchor": "warn",
-        "useAnchorContent": "warn",
-        "noSvgWithoutTitle": "warn",
+        "useValidAnchor": "off",
+        "useAnchorContent": "off",
+        "noSvgWithoutTitle": "off",
         "useKeyWithClickEvents": "warn",
         "noBlankTarget": "warn",
-        "useIframeTitle": "warn"
+        "useIframeTitle": "off"
       },
       "security": {
         "noDangerouslySetInnerHtml": "warn"

@@ -1,6 +1,6 @@
 import useIsDarkMode from "@/hooks/use-is-dark-mode";
 import { cn, getReadableColor, getValidColor } from "@/lib/utils";
-import { Block } from "@/types/types";
+import type { Block } from "@/types/types";
 import React from "react";
 
 export type ArtboardNodeProps = {
