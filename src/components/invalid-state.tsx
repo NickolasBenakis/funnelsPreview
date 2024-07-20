@@ -1,5 +1,5 @@
 import Info from "@/components/info";
-import * as validJsonInputExample from "@/json/example.json";
+import exampleJSON from "@/json/example.json";
 import React, { Suspense } from "react";
 import * as reactJsonView from "react-json-view-lite";
 import { Skeleton } from "./ui/skeleton";
@@ -14,9 +14,9 @@ const InvalidState = () => {
         subheading="Try to upload another json, similar to the json below 👇"
       />
       <reactJsonView.JsonView
-        data={validJsonInputExample}
+        data={exampleJSON}
         shouldExpandNode={reactJsonView.allExpanded}
-        style={reactJsonView.defaultStyles}
+        style={reactJsonView.darkStyles}
       />
     </Suspense>
   );

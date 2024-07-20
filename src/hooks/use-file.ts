@@ -5,6 +5,8 @@ import type { FunnelJSON } from "@/types/types";
 import { isEmpty } from "lodash";
 import { useEffect, useState } from "react";
 
+const INITIAL_FUNNEL_PAGE = 1;
+
 export const STORAGE_KEY = "funnelJson";
 export enum ErrorType {
   InvalidJsonSchema = "INVALID_JSON_SCHEMA",
@@ -18,6 +20,8 @@ export default () => {
   );
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<ErrorType | undefined>(undefined);
+  const [currentFunnelPage, setCurrentFunnelPage] =
+    useState<number>(INITIAL_FUNNEL_PAGE);
 
   const onInputChange = async (file: File) => {
     setIsLoading(true);
@@ -47,6 +51,7 @@ export default () => {
         }
 
         setFunnelJson(funnelJson);
+        setCurrentFunnelPage(INITIAL_FUNNEL_PAGE);
         await localStorage.setItem(STORAGE_KEY, funnelJson);
       } catch (_error) {
         setError(ErrorType.InvalidJsonSchema);
@@ -102,13 +107,27 @@ export default () => {
     onFileReset();
     setIsLoading(false);
     setFunnelJson(undefined);
+    setCurrentFunnelPage(INITIAL_FUNNEL_PAGE);
     await localStorage.removeItem(STORAGE_KEY);
+  };
+
+  const onFunnelPageChange = (page: number) => {
+    setCurrentFunnelPage(page);
+    const element = document.getElementById(`artboard-${page}`);
+    if (element) {
+      element.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    }
   };
 
   return {
     funnelJson,
     isLoading,
     error,
+    currentFunnelPage,
+    onFunnelPageChange,
     onFileChange,
     onFileReset,
     onFileDrop,

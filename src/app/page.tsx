@@ -29,12 +29,14 @@ import { useRef, useState } from "react";
 
 const Home = () => {
   const canvasRef = useRef<HTMLDivElement | null>(null);
-  const [currentPage, setCurrentPage] = useState<number>(1);
 
   const {
     funnelJson,
     isLoading,
     error,
+
+    currentFunnelPage,
+    onFunnelPageChange,
 
     onFileChange,
     onFileReset,
@@ -63,7 +65,7 @@ const Home = () => {
                 id={`${index + 1}`}
                 bgColor={funnelJson?.bgColor}
                 name={funnelJson?.name}
-                isVisible={currentPage === index + 1}
+                isVisible={currentFunnelPage === index + 1}
               >
                 {page?.blocks?.map((block) => {
                   return <ArtboardNode key={block.id} block={block} />;
@@ -130,13 +132,12 @@ const Home = () => {
                 return (
                   <Button
                     key={`button-${page.id}`}
-                    variant={currentPage === index + 1 ? "default" : "ghost"}
+                    variant={
+                      currentFunnelPage === index + 1 ? "default" : "ghost"
+                    }
                     size="sm"
                     className={cn("w-full my-1")}
-                    onClick={() => {
-                      setCurrentPage(index + 1);
-                      scrollToTop(canvasRef);
-                    }}
+                    onClick={() => onFunnelPageChange(index + 1)}
                   >
                     {`Page ${index + 1}`}
                   </Button>
@@ -188,22 +189,13 @@ const Home = () => {
                         <Button
                           key={`button-${page.id}`}
                           variant={
-                            currentPage === index + 1 ? "default" : "ghost"
+                            currentFunnelPage === index + 1
+                              ? "default"
+                              : "ghost"
                           }
                           size="sm"
                           className={cn("w-full my-1")}
-                          onClick={() => {
-                            setCurrentPage(index + 1);
-                            const element = document.getElementById(
-                              `artboard-${index + 1}`,
-                            );
-                            if (element) {
-                              element.scrollIntoView({
-                                behavior: "smooth",
-                                block: "start",
-                              });
-                            }
-                          }}
+                          onClick={() => onFunnelPageChange(index + 1)}
                         >
                           {`Page ${index + 1}`}
                         </Button>
