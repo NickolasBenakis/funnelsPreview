@@ -17,7 +17,6 @@
 - 🎨 TailwindCSS - Class sorting, merging and linting
 - 🛠️ Shadcn/ui - Customizable UI components
 - 🧪 Jest & React Testing Library - Configured for unit testing
-- 🎭 Playwright - Configured for e2e testing
 - 📈 Absolute Import & Path Alias - Import components using `@/` prefix
 - 💅 Biome - Format, lint, all in one
 - 🐶 Husky & Lint Staged - Run scripts on your staged files before they are committed
@@ -64,7 +63,7 @@ and open http://localhost:3000/ to see this app.
 ├── .husky                          # Husky configuration
 ├── public                          # Public assets folder
 └── src
-    ├── __tests__                   # Unit and e2e tests
+    ├── __tests__                   # Unit and tests
     ├── actions                     # Server actions
     ├── app                         # Next JS App (App Router)
     ├── components                  # React components
@@ -88,7 +87,5 @@ The following scripts are available in the `package.json`:
 - `typecheck`: Type-check TypeScript without emitting files
 - `test`: Run unit tests
 - `test:watch`: Run unit tests in watch mode
-- `e2e`: Run end-to-end tests
-- `e2e:ui`: Run end-to-end tests with UI
 - `postbuild`: Generate sitemap
 - `prepare`: Install Husky for managing Git hooks
