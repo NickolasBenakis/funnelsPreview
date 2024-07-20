@@ -16,18 +16,12 @@
 - 📘 Typescript
 - 🎨 TailwindCSS - Class sorting, merging and linting
 - 🛠️ Shadcn/ui - Customizable UI components
-- 📋 React-hook-form - Manage your forms easy and efficient 
-- 🔍 Zod - Schema validation library
 - 🧪 Jest & React Testing Library - Configured for unit testing
 - 🎭 Playwright - Configured for e2e testing
 - 📈 Absolute Import & Path Alias - Import components using `@/` prefix
 - 💅 Biome - Format, lint, all in one
 - 🐶 Husky & Lint Staged - Run scripts on your staged files before they are committed
 - 🔹 Icons - From Lucide
-- 🤖 Github actions - Lint your code on PR
-- ⚙️ T3-env - Manage your environment variables
-- 🗺️ Sitemap & robots.txt
-- 💯 Perfect Lighthouse score
 
 ## 🚀 Deployment
 
