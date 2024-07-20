@@ -41,7 +41,7 @@ function SkeletonArtboard({ className, ...props }: AnimatedComponentProps) {
   return (
     <div
       className={cn(
-        "animate-pulse bg-primary/10 text-primary/10 justify-start border border-gray-300 relative rounded-md z-90 group/artboard mx-auto my-12 box-content min-h-[620px] shadow-2xl transition-all duration-800 ease-out is-mobile w-mobile max-w-mobile w-[375px] h-[80vh]",
+        "animate-pulse bg-primary/10 text-primary/10 justify-start border border-gray-300 relative rounded-md z-90 group/artboard mx-auto my-12 box-content min-h-[500px] shadow-2xl transition-all duration-800 ease-out is-mobile w-mobile max-w-mobile w-[375px] h-[650px]",
         className,
       )}
       {...props}

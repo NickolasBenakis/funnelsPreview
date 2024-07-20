@@ -25,6 +25,8 @@ export const generateMetadata = (): Metadata => ({
 const RootLayout = ({ children }: PropsWithChildren) => {
   return (
     <html lang={"en"} suppressHydrationWarning={true}>
+      <meta httpEquiv="x-ua-compatible" content="ie=edge" />
+      <meta name="viewport" content="width=device-width, initial-scale=1" />
       <body className={cn("min-h-screen font-sans", fonts)}>
         <ThemeProvider attribute="class">
           <Navbar />

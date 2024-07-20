@@ -3,6 +3,7 @@ export type InfoProps = {
   heading?: React.ReactNode;
   subheading?: React.ReactNode;
 };
+
 const Info = ({ heading = "", subheading = "", children }: InfoProps) => {
   return (
     <section className="mx-auto flex max-w-[980px] flex-col items-center justify-center gap-2 py-1 md:py-3 lg:py-4 md:pb-4  lg:pb-4">

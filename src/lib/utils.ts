@@ -22,3 +22,13 @@ export const getValidColor = (color: string | undefined, fallback = "") => {
 export const waitFor = (ms: number) => new Promise((r) => setTimeout(r, ms));
 
 export const isJson = (file: File) => file.type === "application/json";
+
+export function scrollToTop(elementRef: React.RefObject<HTMLElement>) {
+  if (elementRef.current) {
+    const scrollOptions: ScrollIntoViewOptions = {
+      behavior: "smooth",
+      block: "start",
+    };
+    elementRef.current.scrollIntoView(scrollOptions);
+  }
+}

@@ -18,8 +18,9 @@ export function AnimatedComponent({
   return (
     <motion.div
       id={id}
-      initial={{ y: 20, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
       transition={{ ease: "easeInOut", duration: 0.75 }}
       className={cn("", className)}
       style={style}

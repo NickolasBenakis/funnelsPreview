@@ -1,6 +1,5 @@
 import { getValidColor } from "@/lib/utils";
 import type React from "react";
-import { isMobile } from "react-device-detect";
 import { AnimatedComponent } from "./animated-component";
 
 export type MobileArtboardProps = {
@@ -8,6 +7,7 @@ export type MobileArtboardProps = {
   bgColor?: string;
   name?: string;
   id: string;
+  isVisible?: boolean;
 };
 
 const MobileArtboard = ({
@@ -15,7 +15,10 @@ const MobileArtboard = ({
   bgColor,
   name,
   id,
+  isVisible,
 }: MobileArtboardProps) => {
+  if (!isVisible) return null;
+
   return (
     <AnimatedComponent
       id={`artboard-${id}`}
@@ -23,9 +26,9 @@ const MobileArtboard = ({
       style={{
         backgroundColor: getValidColor(bgColor) || "inherit",
       }}
-      className={`border border-gray-300 relative rounded-md z-90 group/artboard mx-auto my-12 box-content min-h-[620px] shadow-2xl transition-all duration-200 ease-out ${
-        isMobile ? "w-full" : "w-[375px]"
-      }`}
+      className={
+        "border border-gray-300 relative rounded-md z-90 group/artboard my-4 mx-auto sm:my-12 w-[90%] sm:w-[375px] box-content min-h-[620px] shadow-2xl transition-all duration-200 ease-out"
+      }
     >
       {children}
     </AnimatedComponent>
