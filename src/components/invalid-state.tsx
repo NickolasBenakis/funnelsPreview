@@ -1,11 +1,10 @@
 import Info from "@/components/info";
-import validJsonInputExample from "@/json/example.json";
+import * as validJsonInputExample from "@/json/example.json";
 import React, { Suspense } from "react";
 import reactJsonView from "react-json-view-lite";
 import { Skeleton } from "./ui/skeleton";
 
 import "react-json-view-lite/dist/index.css";
-import dynamic from "next/dynamic";
 
 const InvalidState = () => {
   return (
