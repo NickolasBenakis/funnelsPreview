@@ -1,0 +1,70 @@
+import useIsDarkMode from "@/hooks/use-is-dark-mode";
+import { cn, getReadableColor, getValidColor } from "@/lib/utils";
+import { Block } from "@/types/types";
+import React from "react";
+
+export type ArtboardNodeProps = {
+  block: Block;
+};
+const ArtboardNode = ({ block }: ArtboardNodeProps) => {
+  const isDarkMode = useIsDarkMode();
+  console.log(isDarkMode);
+  switch (block.type) {
+    case "text":
+      return (
+        <p
+          id={block.id}
+          data-type={block.type}
+          className={cn(
+            `p-2 text-base ${block.align && `text-${block.align}`} `,
+          )}
+          style={{
+            color: getValidColor(block.color) || "inherit",
+          }}
+        >
+          {block.text}
+        </p>
+      );
+    case "image":
+      return (
+        <img
+          id={block.id}
+          data-type={block.type}
+          src={block.src}
+          alt={block.alt || ""}
+          className="px-2 w-full"
+        />
+      );
+    case "list":
+      return (
+        <ul id={block.id} data-type={block.type} className="py-2">
+          {block?.items?.map((item) => (
+            <li key={item.id} className="flex flex-col items-center p-1">
+              <strong className="p-1">{item.title}</strong>
+              <p className="p-0.5">{item.description}</p>
+              <img src={item.src} alt={item.title} className="p-1 w-12 h-12" />
+            </li>
+          ))}
+        </ul>
+      );
+    case "button":
+      return (
+        <button
+          type="button"
+          id={block.id}
+          data-type={block.type}
+          className="p-2 my-4 mx-auto rounded-lg w-1/2 flex justify-center items-center"
+          style={{
+            backgroundColor: getValidColor(block.bgColor) || "inherit",
+            color: getValidColor(block.color) || "inherit",
+          }}
+        >
+          {block.text}
+        </button>
+      );
+    default:
+      return null;
+  }
+};
+
+export default ArtboardNode;

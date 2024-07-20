@@ -1,0 +1,62 @@
+{
+    "name": "My revised funnel",
+    "bgColor": "#E0E0E0",
+    "pages": [
+        {
+            "id": "d7c05e20d3a1486585bb889b3c5b6e9f",
+            "blocks": [
+                {
+                    "id": "a6e08d664867419a85c40d333ca4a00e",
+                    "type": "text",
+                    "text": "Hello there!",
+                    "color": "#303030",
+                    "align": "left"
+                },
+                {
+                    "id": "8f2f25ad177843b6b7fc81811b4f0456",
+                    "type": "image",
+                    "alt": "Greeting image",
+                    "src": "https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1350&q=80"
+                },
+                {
+                    "id": "a7e08d664867419a85c40d333ca4a123",
+                    "type": "text",
+                    "text": "Explore our fantastic menu!",
+                    "color": "#303030",
+                    "align": "right"
+                },
+                {
+                    "id": "5dc5ca19c11d4314bba0905de6c9dc07",
+                    "type": "list",
+                    "items": [
+                        {
+                            "id": "6dc5ca19c11d4314bba0905de6c9dc08",
+                            "title": "Appetizers",
+                            "description": "Start your meal with a bang!",
+                            "src": "https://img.icons8.com/0076FF/win10/247/kawaii-soda"
+                        },
+                        {
+                            "id": "7dc5ca19c11d4314bba0905de6c9dc09",
+                            "title": "Main Course",
+                            "description": "Delicious and fulfilling.",
+                            "src": "https://img.icons8.com/0076FF/win10/247/kawaii-cupcake"
+                        },
+                        {
+                            "id": "8dc5ca19c11d4314bba0905de6c9dc10",
+                            "title": "Desserts",
+                            "description": "Sweeten your meal.",
+                            "src": "https://img.icons8.com/0076FF/win10/247/kawaii-taco"
+                        }
+                    ]
+                },
+                {
+                    "id": "318fb0f6146b4728ad0b19e3b1084awd",
+                    "type": "button",
+                    "text": "Awesome Menu!",
+                    "color": "black",
+                    "bgColor": "#FF5733"
+                }
+            ]
+        }
+    ]
+}

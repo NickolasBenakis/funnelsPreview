@@ -1,0 +1,86 @@
+{
+    "name": "My simplified funnel",
+    "bgColor": "#FFFFFF",
+    "pages": [
+        {
+            "id": "c6b05e20d3a1486585bb889b3c5b6e9f",
+            "blocks": [
+                {
+                    "id": "d5e08d664867419a85c40d333ca4a00e",
+                    "type": "text",
+                    "text": "Hello World!",
+                    "color": "#404040",
+                    "align": "left"
+                },
+                {
+                    "id": "7f2f25ad177843b6b7fc81811b4f0456",
+                    "type": "image",
+                    "alt": "Intro image",
+                    "src": "https://images.unsplash.com/photo-1606788075761-69d0f2e1e53f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1350&q=80"
+                },
+                {
+                    "id": "d5e08d664867419a85c40d333ca4a123",
+                    "type": "text",
+                    "text": "Check out our services!",
+                    "color": "#404040",
+                    "align": "left"
+                },
+                {
+                    "id": "5dc5ca19c11d4314bba0905de6c9dc07",
+                    "type": "list",
+                    "items": [
+                        {
+                            "id": "6dc5ca19c11d4314bba0905de6c9dc08",
+                            "title": "Consulting",
+                            "description": "Professional advice.",
+                            "src": "https://img.icons8.com/0076FF/win10/247/kawaii-soda"
+                        },
+                        {
+                            "id": "7dc5ca19c11d4314bba0905de6c9dc09",
+                            "title": "Development",
+                            "description": "Custom solutions.",
+                            "src": "https://img.icons8.com/0076FF/win10/247/kawaii-cupcake"
+                        },
+                        {
+                            "id": "8dc5ca19c11d4314bba0905de6c9dc10",
+                            "title": "Support",
+                            "description": "24/7 Assistance.",
+                            "src": "https://img.icons8.com/0076FF/win10/247/kawaii-taco"
+                        }
+                    ]
+                },
+                {
+                    "id": "218fb0f6146b4728ad0b19e3b1084awd",
+                    "type": "button",
+                    "text": "Contact Us!",
+                    "color": "white",
+                    "bgColor": "#28A745"
+                }
+            ]
+        },
+        {
+            "id": "6b42cc0dc973441e9c83a1970bbaf810",
+            "blocks": [
+                {
+                    "id": "0979f6c1d6b94be7b61d3c99543713a1",
+                    "type": "text",
+                    "text": "We appreciate your visit!",
+                    "color": "#404040",
+                    "align": "right"
+                },
+                {
+                    "id": "8f2f25ad177843b6b7fc81811b4f090c",
+                    "type": "image",
+                    "src": "https://images.unsplash.com/photo-1518709268806-4e9042af9f23?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1351&q=80"
+                },
+                {
+                    "id": "218fb0f6146b4728ad0b19e3b1084a16",
+                    "type": "button",
+                    "text": "Learn More!",
+                    "color": "black",
+                    "bgColor": "#FF5733"
+                }
+            ]
+        }
+    ]
+}
