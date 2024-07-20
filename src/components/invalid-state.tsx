@@ -1,7 +1,7 @@
 import Info from "@/components/info";
 import * as validJsonInputExample from "@/json/example.json";
 import React, { Suspense } from "react";
-import reactJsonView from "react-json-view-lite";
+import * as reactJsonView from "react-json-view-lite";
 import { Skeleton } from "./ui/skeleton";
 
 import "react-json-view-lite/dist/index.css";
