@@ -29,6 +29,7 @@ export default () => {
     await waitFor(500);
     if (!file || !isJson(file)) {
       setIsLoading(false);
+      setError(ErrorType.InvalidFileType);
       return;
     }
 

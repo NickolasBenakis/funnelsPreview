@@ -21,7 +21,7 @@ import {
   SkeletonButton,
 } from "@/components/ui/skeleton";
 import useFile, { ErrorType } from "@/hooks/use-file";
-import { cn, scrollToTop } from "@/lib/utils";
+import { cn } from "@/lib/utils";
 import { Plus } from "lucide-react";
 
 import type React from "react";

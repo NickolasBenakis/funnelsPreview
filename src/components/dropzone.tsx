@@ -2,7 +2,7 @@
 
 import { Button } from "@/components/ui/button";
 import { Spinner } from "@/components/ui/spinner";
-import type { ErrorType } from "@/hooks/use-file";
+import { ErrorType } from "@/hooks/use-file";
 import { cn } from "@/lib/utils";
 import { Frown, Upload } from "lucide-react";
 import React, { useRef, type ChangeEvent } from "react";
@@ -120,7 +120,12 @@ const Dropzone: React.FC<DropzoneProps> = ({
           <Frown size={32} strokeWidth={1.5} />
           <div className="flex flex-col gap-3 items-center justify-start">
             <p className="font-semibold text-sm text-gray-500 dark:text-gray-400">
-              Error uploading file. Please try again.
+              {error === ErrorType.InvalidFileType &&
+                "Invalid File type, use .json files only"}
+              {error === ErrorType.InvalidJsonSchema &&
+                "Invalid JSON schema, try again"}
+              {error === ErrorType.NoFileDetected &&
+                "No File detected, try again"}
             </p>
             <Button
               onClick={onInternalFileReset}
