@@ -51,9 +51,7 @@ const Home = () => {
         <div className="p-4" id="canvas" data-testid="canvas" ref={canvasRef}>
           {isLoading && <SkeletonArtboard />}
           {!isLoading && error === ErrorType.InvalidJsonSchema && (
-            <div className="p-4 rounded-md">
-              <InvalidState />
-            </div>
+            <InvalidState />
           )}
 
           {!isLoading &&
