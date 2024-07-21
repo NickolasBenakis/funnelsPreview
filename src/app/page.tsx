@@ -3,29 +3,18 @@ import ArtboardNode from "@/components/artboard-node";
 import Dropzone from "@/components/dropzone";
 import InvalidState from "@/components/invalid-state";
 import MobileArtboard from "@/components/mobile-artboard";
+import MobileViewNavigation from "@/components/mobile-view-navigation";
+import MobileViewUpload from "@/components/mobile-view-upload";
+import SidebarSkeleton from "@/components/sidebar-skeleton";
 import { Button } from "@/components/ui/button";
-import {
-  Drawer,
-  DrawerClose,
-  DrawerContent,
-  DrawerDescription,
-  DrawerFooter,
-  DrawerHeader,
-  DrawerTrigger,
-} from "@/components/ui/drawer";
 
 import { ScrollArea } from "@/components/ui/scroll-area";
-import {
-  Skeleton,
-  SkeletonArtboard,
-  SkeletonButton,
-} from "@/components/ui/skeleton";
+import { SkeletonArtboard } from "@/components/ui/skeleton";
 import useFile, { ErrorType } from "@/hooks/use-file";
-import { cn } from "@/lib/utils";
-import { Plus } from "lucide-react";
+import { ArrowDown, ArrowUp } from "lucide-react";
 
 import type React from "react";
-import { useRef, useState } from "react";
+import { useRef } from "react";
 
 const Home = () => {
   const canvasRef = useRef<HTMLDivElement | null>(null);
@@ -42,6 +31,7 @@ const Home = () => {
     onFileReset,
     onFileDrop,
     onFileDragOver,
+
     onClearState,
   } = useFile();
 
@@ -89,24 +79,7 @@ const Home = () => {
           />
         </div>
 
-        {isLoading && (
-          <div className="p-4" data-testid="sidebar-skeleton">
-            <Skeleton className="w-32 h-8 my-4" />
-            <SkeletonButton className="w-full" />
-            <Skeleton className="w-32 h-8 my-4" />
-            <div className="flex flex-col gap-3">
-              {[1, 2].map((skeleton) => {
-                return (
-                  <SkeletonButton
-                    key={skeleton}
-                    size="sm"
-                    className={cn("w-full")}
-                  />
-                );
-              })}
-            </div>
-          </div>
-        )}
+        {isLoading && <SidebarSkeleton />}
 
         {!isLoading && funnelJson && (
           <>
@@ -134,7 +107,7 @@ const Home = () => {
                       currentFunnelPage === index + 1 ? "default" : "ghost"
                     }
                     size="sm"
-                    className={cn("w-full my-1")}
+                    className="w-full my-1"
                     onClick={() => onFunnelPageChange(index + 1)}
                   >
                     {`Page ${index + 1}`}
@@ -146,71 +119,28 @@ const Home = () => {
         )}
       </aside>
 
-      <Drawer>
-        <DrawerTrigger
-          asChild
-          className="visible sm:hidden absolute bottom-[10%] right-[3%]"
-        >
-          <Button size="icon" variant="default" className="rounded-full">
-            <Plus />
-          </Button>
-        </DrawerTrigger>
-        <DrawerContent>
-          <DrawerHeader>
-            <DrawerDescription>
-              <div className="pt-1 px-2">
-                <Dropzone
-                  error={error}
-                  isLoading={isLoading}
-                  onFileChange={onFileChange}
-                  onFileReset={onFileReset}
-                />
-              </div>
+      <MobileViewUpload
+        isLoading={isLoading}
+        funnelJson={funnelJson}
+        currentFunnelPage={currentFunnelPage}
+        onFunnelPageChange={onFunnelPageChange}
+        onClearState={onClearState}
+      >
+        <Dropzone
+          error={error}
+          isLoading={isLoading}
+          onFileChange={onFileChange}
+          onFileReset={onFileReset}
+          onFileDrop={onFileDrop}
+          onFileDragOver={onFileDragOver}
+        />
+      </MobileViewUpload>
 
-              {!isLoading && funnelJson && (
-                <>
-                  <div className="p-2">
-                    <Button
-                      variant="destructive"
-                      className="w-full"
-                      onClick={onClearState}
-                    >
-                      Remove
-                    </Button>
-                  </div>
-                  <div className="px-2">
-                    <h2 className="text-lg font-bold my-2">Navigate</h2>
-                  </div>
-                  <ScrollArea className="flex flex-col gap-2 h-[100px] pl-2 pr-2">
-                    {funnelJson?.pages?.map?.((page, index) => {
-                      return (
-                        <Button
-                          key={`button-${page.id}`}
-                          variant={
-                            currentFunnelPage === index + 1
-                              ? "default"
-                              : "ghost"
-                          }
-                          size="sm"
-                          className={cn("w-full my-1")}
-                          onClick={() => onFunnelPageChange(index + 1)}
-                        >
-                          {`Page ${index + 1}`}
-                        </Button>
-                      );
-                    })}
-                  </ScrollArea>
-                </>
-              )}
-            </DrawerDescription>
-          </DrawerHeader>
-          <DrawerFooter>
-            <DrawerClose>
-              <Button variant="outline">Cancel</Button>
-            </DrawerClose>
-          </DrawerFooter>
-        </DrawerContent>
-      </Drawer>
+      <MobileViewNavigation
+        funnelJson={funnelJson}
+        currentFunnelPage={currentFunnelPage}
+        onFunnelPageChange={onFunnelPageChange}
+      />
     </section>
   );
 };
