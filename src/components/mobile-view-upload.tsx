@@ -31,7 +31,7 @@ const MobileViewUpload = ({
     <Drawer>
       <DrawerTrigger
         asChild
-        className="visible sm:hidden absolute p-1 m-1 bottom-[12vh] right-[3%]"
+        className="visible sm:hidden m-1 fixed bottom-10 right-5"
       >
         <Button size="icon" variant="default" className="rounded-full">
           <Upload />

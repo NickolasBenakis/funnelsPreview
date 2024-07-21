@@ -19,7 +19,7 @@ const MobileViewNavigation = ({
   return (
     <div
       id="mobile-page-navigation"
-      className="sm:hidden absolute bottom-[12vh] left-[3%] p-1 m-1 flex flex-col gap-2"
+      className="sm:hidden fixed bottom-10 left-5 m-1 flex flex-col gap-2"
     >
       <Button
         size="icon"
