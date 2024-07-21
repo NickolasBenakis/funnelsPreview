@@ -37,8 +37,13 @@ const Home = () => {
 
   return (
     <section className="fixed h-full w-screen overflow-auto">
-      <div className="fixed h-full w-screen overflow-y-auto pb-16 sm:pl-[320px] transition-all duration-200 ease-in-out shadow-lg">
-        <div className="p-4" id="canvas" data-testid="canvas" ref={canvasRef}>
+      <div className="fixed h-full w-screen overflow-auto pb-16 sm:pl-[320px]">
+        <div
+          className="p-4 bg-gray-50 min-h-[100vh] h-auto"
+          id="canvas"
+          data-testid="canvas"
+          ref={canvasRef}
+        >
           {isLoading && <SkeletonArtboard />}
           {!isLoading && error === ErrorType.InvalidJsonSchema && (
             <InvalidState />
@@ -52,7 +57,6 @@ const Home = () => {
                 key={page.id}
                 id={`${index + 1}`}
                 bgColor={funnelJson?.bgColor}
-                name={funnelJson?.name}
                 isVisible={currentFunnelPage === index + 1}
               >
                 {page?.blocks?.map((block) => {

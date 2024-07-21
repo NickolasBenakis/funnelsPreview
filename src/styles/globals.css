@@ -47,12 +47,6 @@
     --input: 240 3.7% 15.9%;
     --ring: 240 4.9% 83.9%;
   }
-
-  #canvas {
-    background-color: rgb(242, 242, 242);
-    min-height: 100vh;
-    height: auto;
-  }
 }
 
 @layer base {
