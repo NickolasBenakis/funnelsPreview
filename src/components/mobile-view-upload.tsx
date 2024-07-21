@@ -44,6 +44,8 @@ const MobileViewUpload = ({
             {!isLoading && funnelJson && (
               <>
                 <div className="p-2">
+                  <h2 className="text-md my-4 truncate">{funnelJson.name}</h2>
+
                   <Button
                     variant="destructive"
                     className="w-full"
