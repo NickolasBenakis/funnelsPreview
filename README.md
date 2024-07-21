@@ -86,6 +86,7 @@ The following scripts are available in the `package.json`:
 
 ## Extra Mile 🏁 
 
+- I wanted to add a way to avoid low contrast colors within elements. I tried different approaches but It wasn't ideal so I dropped it completely. 
 - More Unit tests and UI Integration tests.
 - More Styling around the canvas and the elements.
 - More file management, potentially upload the json files to S3 and provide a file management for the client.
