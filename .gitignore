@@ -48,3 +48,8 @@ sitemap-*.xml
 /blob-report/
 /playwright/.cache/
 /coverage
+
+# next-pwa
+**/public/workbox-*.js
+**/public/sw.js
+**/public/fallback-*.js

@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "NODE_OPTIONS='--inspect' next dev --turbo",
     "build": "next build",
-    "start": "next start",
+    "start": "next build && next start",
     "preview": "next build && next start",
     "lint": "npx @biomejs/biome lint --apply ./src",
     "format": "npx @biomejs/biome check --write ./src",
@@ -39,6 +39,7 @@
     "lodash": "^4.17.21",
     "lucide-react": "0.407.0",
     "next": "14.2.5",
+    "next-pwa": "^5.6.0",
     "next-themes": "0.3.0",
     "react": "18",
     "react-device-detect": "2.2.3",
@@ -48,10 +49,10 @@
     "vaul": "^0.9.1"
   },
   "devDependencies": {
-    "@testing-library/user-event": "14.5.2",
     "@biomejs/biome": "1.8.3",
     "@testing-library/jest-dom": "6.4.6",
     "@testing-library/react": "16.0.0",
+    "@testing-library/user-event": "14.5.2",
     "@types/color": "3.0.6",
     "@types/jest": "29.5.12",
     "@types/lodash": "4.17.7",
