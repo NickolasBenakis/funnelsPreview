@@ -25,6 +25,7 @@
 ## 🚀 Deployment
 
 [website](https://funnels-preview-ashen.vercel.app/)
+🎉 Has been tested across Safari, Chrome, Firefox 
 
 ## 🎯 Getting started
 
@@ -46,7 +47,7 @@ pnpm prepare
 You can start the server using this command:
 
 ```bash
-npm run dev
+pnpm dev
 ```
 
 and open http://localhost:3000/ to see this app.
@@ -85,5 +86,7 @@ The following scripts are available in the `package.json`:
 
 ## Extra Mile 🏁 
 
-- More Unit tests and UI Integration tests (Page)
-- 
+- More Unit tests and UI Integration tests.
+- More Styling around the canvas and the elements.
+- More file management, potentially upload the json files to S3 and provide a file management for the client.
+
