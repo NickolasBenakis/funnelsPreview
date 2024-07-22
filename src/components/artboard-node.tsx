@@ -28,7 +28,12 @@ const ArtboardNode = ({ block }: ArtboardNodeProps) => {
       return <ImageNode id={block.id} src={block.src} alt={block.alt} />;
     case "list": {
       return (
-        <ul id={block.id} data-type={block.type} className="py-2">
+        <ul
+          id={block.id}
+          data-testid={block.id}
+          data-type={block.type}
+          className="py-2"
+        >
           {block?.items?.map((item) => (
             <li key={item.id} className="flex flex-col items-center p-1">
               <strong className="p-1">{item.title}</strong>

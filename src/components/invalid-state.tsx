@@ -24,7 +24,7 @@ const InvalidState = () => {
   };
 
   return (
-    <div className="p-4 rounded-md">
+    <div className="p-4 rounded-md" data-testid="invalid-state">
       <Info
         heading="Invalid json schema"
         subheading="Try to upload another json, similar to the structure below 👇"
