@@ -7,6 +7,13 @@ import { cn } from "@/lib/utils";
 import { Frown, Upload } from "lucide-react";
 import React, { useRef, type ChangeEvent } from "react";
 
+enum DragStyles {
+  ParentEnter = "border-gray-950",
+  ParentLeave = "border-gray-300",
+  TargetEnter = "bg-gray-100",
+  TargetLeave = "bg-gray-50",
+}
+
 export type DropzoneProps = {
   error: ErrorType | undefined;
   isLoading: boolean;
@@ -36,6 +43,50 @@ const Dropzone: React.FC<DropzoneProps> = ({
     }
   };
 
+  const onDragEnter = (e: React.DragEvent<HTMLLabelElement>) => {
+    e.preventDefault();
+    if (!e.currentTarget) return;
+    if (!e.currentTarget.parentElement) return;
+    e.currentTarget?.parentElement?.classList.replace(
+      DragStyles.ParentLeave,
+      DragStyles.ParentEnter,
+    );
+    e.currentTarget.classList.replace(
+      DragStyles.TargetLeave,
+      DragStyles.TargetEnter,
+    );
+  };
+
+  const onDragLeave = (e: React.DragEvent<HTMLLabelElement>) => {
+    e.preventDefault();
+    if (!e.currentTarget) return;
+    if (!e.currentTarget.parentElement) return;
+    e.currentTarget?.parentElement?.classList.replace(
+      DragStyles.ParentEnter,
+      DragStyles.ParentLeave,
+    );
+    e.currentTarget.classList.replace(
+      DragStyles.TargetEnter,
+      DragStyles.TargetLeave,
+    );
+  };
+
+  const onInternalDragOver = (e: React.DragEvent<HTMLLabelElement>) => {
+    onDragEnter(e);
+
+    if (onFileDragOver) {
+      onFileDragOver(e);
+    }
+  };
+
+  const onInternalDrop = (e: React.DragEvent<HTMLLabelElement>) => {
+    onDragLeave(e);
+
+    if (onFileDrop) {
+      onFileDrop(e);
+    }
+  };
+
   return (
     <div
       id="dropzone-container"
@@ -50,6 +101,8 @@ const Dropzone: React.FC<DropzoneProps> = ({
         h-40 
         border-2 
         border-dashed 
+        border-gray-300
+        hover:border-gray-950
         rounded-lg
         transition-all
         duration-200
@@ -57,14 +110,10 @@ const Dropzone: React.FC<DropzoneProps> = ({
     >
       {!error && (
         <label
-          onDrop={onFileDrop}
-          onDragOver={onFileDragOver}
-          onDragEnter={(e) =>
-            e.currentTarget.classList.replace("bg-gray-50", "bg-gray-100")
-          }
-          onDragLeave={(e) =>
-            e.currentTarget.classList.replace("bg-gray-100", "bg-gray-50")
-          }
+          onDrop={onInternalDrop}
+          onDragOver={onInternalDragOver}
+          onDragEnter={onDragEnter}
+          onDragLeave={onDragLeave}
           htmlFor="dropzone-file"
           aria-disabled={isLoading}
           className={cn(
