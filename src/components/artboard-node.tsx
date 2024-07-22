@@ -35,7 +35,10 @@ const ArtboardNode = ({ block }: ArtboardNodeProps) => {
           className="py-2"
         >
           {block?.items?.map((item) => (
-            <li key={item.id} className="flex flex-col items-center p-1">
+            <li
+              key={item.id}
+              className="flex flex-col items-center p-1 break-all"
+            >
               <strong className="p-1">{item.title}</strong>
               <p className="p-0.5">{item.description}</p>
               <img src={item.src} alt={item.title} className="p-1 w-12 h-12" />
