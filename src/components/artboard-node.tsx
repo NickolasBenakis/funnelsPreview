@@ -14,7 +14,7 @@ const ArtboardNode = ({ block }: ArtboardNodeProps) => {
           id={block.id}
           data-type={block.type}
           className={cn(
-            `p-2 text-base ${block.align && `text-${block.align}`} `,
+            `p-2 text-base ${block.align && `text-${block.align}`} break-all`,
           )}
           style={{
             color: block.color || "inherit",
